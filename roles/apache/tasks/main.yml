@@ -12,5 +12,5 @@
     enabled: yes
 
 - name: "install php packages"
-  include: "php-install.yml"
+  include_tasks: "php-install.yml"
   when: php_install|default(False)|bool

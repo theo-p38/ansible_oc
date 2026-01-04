@@ -1,0 +1,6 @@
+---
+- name: "Installation apache"
+  hosts: web-services
+  roles:
+    - role: "apache"
+      php_install: yes
