@@ -36,12 +36,13 @@
     --dbname mediawiki --lang fr
     --dbuser {{mediawiki_db_user}}
     --dbpass {{mediawiki_db_password}}
+    --pass {{mediawiki_admin_password}}
     --dbserver {{mediawiki_db_host}}
     --server http://web-services
     {{mediawiki_title}} {{mediawiki_admin_user}}
   run_once: yes
-  delegate_to: "{{items}}"
-  with_items: {{groups.apache}}
+  delegate_to: "{{item}}"
+  with_items: "{{groups.apache}}"
 
 - name: "mediawiki db update"
   become: yes
@@ -50,6 +51,6 @@
     php update.php --quick
   args:
     chdir: "{{mediawiki_maintenance_directory}}"
-    run_once: yes
-    register: resultat
-    changed_when: "'...done.' in resultat.stdout"
+  run_once: yes
+  register: resultat
+  changed_when: "'...done.' in resultat.stdout"
