@@ -5,6 +5,7 @@
     name: "apache2"
     state: "present"
 
+- debug: msg="Avant activation du service apache"
 - name: "apache service activation"
   service:
     name: "apache2"
